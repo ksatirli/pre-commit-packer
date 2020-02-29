@@ -1,7 +1,19 @@
 ---
 
+- id: packer-fix
+  name: Fix Packer template(s) with backwards incompatibilities
+  entry: hashicorp/packer:light fix
+  language: docker_image
+  types: [json]
+  files: ^packer.json$
+  always_run: false
+  verbose: false
+  pass_filenames: true
+  description: Attempts to fix incompatibilities in a template
+  minimum_pre_commit_version: 1.15.0
+
 - id: packer-validate
-  name: Packer validate
+  name: Validate Packer template(s)
   entry: hashicorp/packer:light validate
   language: docker_image
   types: [json]
@@ -15,20 +27,8 @@
     -syntax-only
   ]
 
-- id: packer-fix
-  name: Packer fix
-  entry: hashicorp/packer:light fix
-  language: docker_image
-  types: [json]
-  files: ^packer.json$
-  always_run: false
-  verbose: false
-  pass_filenames: true
-  description: Attempts to fix incompatibilities in a template
-  minimum_pre_commit_version: 1.15.0
-
-- id: packer-fix-and-validate
-  name: Packer fix and validate
+- id: packer-validate-and-fix
+  name: Validate Packer template(s) and fix backwards incompatibilities
   entry: hashicorp/packer:light fix -validate=true
   language: docker_image
   types: [json]
