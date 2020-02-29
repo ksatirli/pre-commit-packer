@@ -1,6 +1,6 @@
 ---
 name: Bug
-about: A bug or problem with the packer-<insert type>  pre-commit-hook
+about: A bug or problem with the packer-<insert type> pre-commit-hook
 labels: bug
 ---
 
