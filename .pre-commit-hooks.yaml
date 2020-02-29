@@ -1,16 +1,37 @@
 ---
 
--   id: packer-validate
-    name: packer validate
-    entry: hashicorp/packer:light
-    language: docker_image
-    types: [json]
-    files: ^packer.json$
-    always_run: true
-    verbose: true
-    pass_filenames: true
-    description: TODO
-    minimum_pre_commit_version: 1.15.0
-    args:
-      - validate
-      - -syntax-only
+- id: packer-validate
+  name: Packer validate
+  entry: hashicorp/packer:light validate
+  language: docker_image
+  types: [json]
+  files: ^packer.json$
+  always_run: false
+  pass_filenames: true
+  description: Validates a template against builders, provisioners
+  minimum_pre_commit_version: 1.15.0
+  args: [
+    -syntax-only
+  ]
+
+- id: packer-fix
+  name: Packer fix
+  entry: hashicorp/packer:light fix
+  language: docker_image
+  types: [json]
+  files: ^packer.json$
+  always_run: false
+  pass_filenames: true
+  description: Attempts to fix incompatibilities in a template
+  minimum_pre_commit_version: 1.15.0
+
+- id: packer-fix-and-validate
+  name: Packer fix and validate
+  entry: hashicorp/packer:light fix -validate=true
+  language: docker_image
+  types: [json]
+  files: ^packer.json$
+  always_run: false
+  pass_filenames: true
+  description: Validates and attempts to fix incompatibilities in a template
+  minimum_pre_commit_version: 1.15.0
