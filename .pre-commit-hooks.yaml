@@ -1,0 +1,16 @@
+---
+
+-   id: packer-validate
+    name: packer validate
+    entry: hashicorp/packer:light
+    language: docker_image
+    types: [json]
+    files: ^packer.json$
+    always_run: true
+    verbose: true
+    pass_filenames: true
+    description: TODO
+    minimum_pre_commit_version: 1.15.0
+    args:
+      - validate
+      - -syntax-only
