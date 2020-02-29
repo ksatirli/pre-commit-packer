@@ -58,6 +58,8 @@ All hooks accept the following configuration options:
 - `files` accepts a string (wildcards are supported) to define which file(s) the hook should target
 - `args` accepts an array with one or more valid command-specific CLI arguments
 
+The `files` configuration option defaults to `packer.json`
+
 The `args` configuration option is most useful with the `packer-validate` action as it allows for passing additional arguments such as a path to a variables file (`-var-file=packer.vars.json`). The upstream documentation for the `validate` command provides an overview of all [available options](https://packer.io/docs/commands/validate.html#options).
 
 ### Using Docker
@@ -68,8 +70,8 @@ This invocation defaults to the `light` [tag](https://hub.docker.com/r/hashicorp
 
 The Docker-specific hooks are prefixed with `docker-`:
 
-- `packer-fix` becomes `docker-packer-fix`
 - `packer-validate` becomes `docker-packer-validate`
+- `packer-fix` becomes `docker-packer-fix`
 - `packer-validate-and-fix`  becomes `docker-packer-validate-and-fix`
 
 ## Notes
