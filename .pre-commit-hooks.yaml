@@ -7,6 +7,7 @@
   types: [json]
   files: ^packer.json$
   always_run: false
+  verbose: false
   pass_filenames: true
   description: Validates a template against builders, provisioners
   minimum_pre_commit_version: 1.15.0
@@ -21,6 +22,7 @@
   types: [json]
   files: ^packer.json$
   always_run: false
+  verbose: false
   pass_filenames: true
   description: Attempts to fix incompatibilities in a template
   minimum_pre_commit_version: 1.15.0
@@ -32,6 +34,7 @@
   types: [json]
   files: ^packer.json$
   always_run: false
+  verbose: false
   pass_filenames: true
   description: Validates and attempts to fix incompatibilities in a template
   minimum_pre_commit_version: 1.15.0
