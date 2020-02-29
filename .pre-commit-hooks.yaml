@@ -1,18 +1,23 @@
 ---
 
-- id: packer-fix
-  name: Fix Packer template(s) with backwards incompatibilities
-  entry: hashicorp/packer:light fix
-  language: docker_image
+-
+  id: packer-validate
+  name: Validate Packer template(s)
+  entry: packer validate
+  language: system
   types: [json]
   files: ^packer.json$
   always_run: false
   verbose: false
   pass_filenames: true
-  description: Attempts to fix incompatibilities in a template
+  description: Validates a template against builders, provisioners
   minimum_pre_commit_version: 1.15.0
+  args: [
+    -syntax-only
+  ]
 
-- id: packer-validate
+-
+  id: docker-packer-validate
   name: Validate Packer template(s)
   entry: hashicorp/packer:light validate
   language: docker_image
@@ -27,7 +32,47 @@
     -syntax-only
   ]
 
-- id: packer-validate-and-fix
+-
+  id: packer-fix
+  name: Fix Packer template(s) with backwards incompatibilities
+  entry: packer fix
+  language: system
+  types: [json]
+  files: ^packer.json$
+  always_run: false
+  verbose: false
+  pass_filenames: true
+  description: Attempts to fix incompatibilities in a template
+  minimum_pre_commit_version: 1.15.0
+
+-
+  id: docker-packer-fix
+  name: Fix Packer template(s) with backwards incompatibilities
+  entry: hashicorp/packer:light fix
+  language: docker_image
+  types: [json]
+  files: ^packer.json$
+  always_run: false
+  verbose: false
+  pass_filenames: true
+  description: Attempts to fix incompatibilities in a template
+  minimum_pre_commit_version: 1.15.0
+
+-
+  id: packer-validate-and-fix
+  name: Validate Packer template(s) and fix backwards incompatibilities
+  entry: packer fix -validate=true
+  language: system
+  types: [json]
+  files: ^packer.json$
+  always_run: false
+  verbose: false
+  pass_filenames: true
+  description: Validates and attempts to fix incompatibilities in a template
+  minimum_pre_commit_version: 1.15.0
+
+-
+  id: docker-packer-validate-and-fix
   name: Validate Packer template(s) and fix backwards incompatibilities
   entry: hashicorp/packer:light fix -validate=true
   language: docker_image
